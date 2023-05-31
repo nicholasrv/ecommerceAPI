@@ -20,11 +20,10 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id")
     private Long id;
 
     @ManyToOne
-    private User ecommerceUser;
+    private User eCommerceUsers;
 
     @ManyToOne
     private Product product;
@@ -32,8 +31,8 @@ public class Order {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy' 'HH:mm:ss")
     private LocalDateTime orderDate;
 
-    public Order(User eccommerceUser, Product product, LocalDateTime orderDate) {
-        this.ecommerceUser = eccommerceUser;
+    public Order(User eCommerceUsers, Product product, LocalDateTime orderDate) {
+        this.eCommerceUsers = eCommerceUsers;
         this.product = product;
         this.orderDate = orderDate;
     }

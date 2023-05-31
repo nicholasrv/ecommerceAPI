@@ -1,10 +1,8 @@
 package com.example.ecommerceapi.controller;
 
-import com.example.ecommerceapi.entity.Category;
 import com.example.ecommerceapi.entity.Product;
 import com.example.ecommerceapi.exceptions.BadRequestException;
 import com.example.ecommerceapi.exceptions.ResourceNotFoundException;
-import com.example.ecommerceapi.service.impl.CategoryServiceImpl;
 import com.example.ecommerceapi.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

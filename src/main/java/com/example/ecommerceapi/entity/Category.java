@@ -17,9 +17,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String description;
+    @Column(name = "categoryDescription", nullable = false)
+    private String categoryDescription;
 
-    public Category(String description) {
-        this.description = description;
+    public Category(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 }

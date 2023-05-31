@@ -1,6 +1,7 @@
 package com.example.ecommerceapi.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,14 +23,19 @@ public class Product {
     @ManyToOne
     private Category category;
 
-    private String name;
-    private String description;
-    private Double price;
+    @Column(name = "productName", nullable = false)
+    private String productName;
 
-    public Product(Category category, String name, String description, Double price) {
+    @Column(name = "productDescription", nullable = false)
+    private String productDescription;
+
+    @Column(name = "productPrice", nullable = false)
+    private Double productPrice;
+
+    public Product(Category category, String productName, String productDescription, Double productPrice) {
         this.category = category;
-        this.name = name;
-        this.description = description;
-        this.price = price;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
     }
 }
