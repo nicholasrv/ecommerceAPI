@@ -29,12 +29,16 @@ public class OrderController {
 
     //POST
     @PostMapping("/order/save")
-    public ResponseEntity<Order> saveNewOrder(@RequestBody @JsonDeserialize(using = DataDeserializer.Deserializer.class) Order order) throws BadRequestException {
+    public ResponseEntity<?> saveNewOrder(@RequestBody @JsonDeserialize(using = DataDeserializer.Deserializer.class) Order order) throws BadRequestException {
         try {
-            return ResponseEntity.ok(orderService.save(order));
+            double orderAmountValue = order.getOrderAmount();
+            if (orderAmountValue <= 0){
+                return ResponseEntity.badRequest().body("The order amount cannot be zero or negative, it has to be positive.");
+            }
+            return ResponseEntity.ok("Order placed successfully!" + orderService.save(order));
         } catch (Exception e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new BadRequestException("An error has occurred while trying to create your order. Please contact our support team for further information.");
         }
     }
 

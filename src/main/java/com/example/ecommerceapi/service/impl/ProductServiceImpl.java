@@ -3,6 +3,7 @@ package com.example.ecommerceapi.service.impl;
 import com.example.ecommerceapi.entity.Product;
 import com.example.ecommerceapi.repository.ProductRepository;
 import com.example.ecommerceapi.service.eCommerceService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -16,6 +17,10 @@ public class ProductServiceImpl implements eCommerceService<Product> {
 
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    public boolean isProductNameExists(String productName){
+        return productRepository.existsProductByProductName(productName);
     }
 
     @Override

@@ -24,11 +24,15 @@ public class ProductController {
 
     //POST
     @PostMapping("/product/save")
-    public ResponseEntity<Product> saveNewProduct(@RequestBody Product product) throws BadRequestException {
+    public ResponseEntity<?> saveNewProduct(@RequestBody Product product) throws BadRequestException {
         try {
+            boolean condition = productService.isProductNameExists(product.getProductName());
+             if(condition){
+                 return ResponseEntity.badRequest().body("The product you're trying to save already exists in the database.");
+             }
             return ResponseEntity.ok(productService.save(product));
         } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new BadRequestException("An error occurred while trying to save your product. Please contact our support team for further information.");
         }
     }
 
