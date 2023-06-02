@@ -1,5 +1,6 @@
 package com.example.ecommerceapi.service.impl;
 
+import com.example.ecommerceapi.custom.MostOrderedProductReport;
 import com.example.ecommerceapi.entity.Order;
 import com.example.ecommerceapi.repository.OrderRepository;
 import com.example.ecommerceapi.service.eCommerceService;
@@ -52,5 +53,9 @@ public class OrderServiceImpl implements eCommerceService<Order> {
             return true;
         };
         return false;
+    }
+
+    public List<MostOrderedProductReport> getReportByMostOrderedProducts() {
+        return orderRepository.getReportByMostOrderedProducts();
     }
 }

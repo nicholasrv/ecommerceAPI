@@ -1,6 +1,7 @@
 package com.example.ecommerceapi.controller;
 
 
+import com.example.ecommerceapi.custom.MostOrderedProductReport;
 import com.example.ecommerceapi.deserializer.DataDeserializer;
 import com.example.ecommerceapi.entity.Category;
 import com.example.ecommerceapi.entity.Order;
@@ -52,6 +53,12 @@ public class OrderController {
     @RequestMapping(value = "/order", method = RequestMethod.GET, produces = "application/json")
     public List<Order> getAllOrders() throws SQLException{
         return orderService.getAllResults();
+    }
+
+    //GET A LIST FOR THE MOST ORDERED PRODUCTS
+    @RequestMapping(value = "/mostordered", method = RequestMethod.GET, produces = "application/json")
+    public List<MostOrderedProductReport> getMostOrderedProducts() throws SQLException{
+        return orderService.getReportByMostOrderedProducts();
     }
 
     // DELETE
