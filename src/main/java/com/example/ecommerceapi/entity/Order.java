@@ -23,6 +23,9 @@ public class Order {
     private Long id;
 
     @ManyToOne
+    private Cart cart;
+
+    @ManyToOne
     private User eCommerceUsers;
 
     @ManyToOne
@@ -33,7 +36,8 @@ public class Order {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy' 'HH:mm:ss")
     private LocalDateTime orderDate;
 
-    public Order(User eCommerceUsers, Product product, Double orderAmount, LocalDateTime orderDate) {
+    public Order(Cart cart, User eCommerceUsers, Product product, Double orderAmount, LocalDateTime orderDate) {
+        this.cart = cart;
         this.eCommerceUsers = eCommerceUsers;
         this.product = product;
         this.orderAmount = orderAmount;
