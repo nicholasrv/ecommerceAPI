@@ -18,6 +18,9 @@ public class UserServiceImpl implements eCommerceService<User> {
         this.userRepository = userRepository;
     }
 
+    public boolean isUserEmailExists(String userEmail){
+        return userRepository.existsUserByUserEmail(userEmail);
+    }
     @Override
     public User save(User user) {
         if(user != null){

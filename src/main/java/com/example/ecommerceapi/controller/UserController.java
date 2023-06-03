@@ -27,11 +27,15 @@ public class UserController {
 
     //POST
     @PostMapping("/user/save")
-    public ResponseEntity<User> saveNewUser(@RequestBody User user) throws BadRequestException {
+    public ResponseEntity<?> saveNewUser(@RequestBody User user) throws BadRequestException {
         try {
+            boolean condition = userService.isUserEmailExists(user.getUserEmail());
+            if(condition){
+                return ResponseEntity.badRequest().body("The user you're trying to save already exists in the database.");
+            }
             return ResponseEntity.ok(userService.save(user));
         } catch (Exception e){
-            throw new RuntimeException(e);
+            throw new BadRequestException("An error occurred while trying to save your user. Please contact our support team for further information.");
         }
     }
 
