@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,11 +33,22 @@ public class Order {
     @ManyToOne
     private Product product;
 
+//    @OneToMany(mappedBy = "order")
+//    private List<OrderItem> items = new ArrayList<OrderItem>();
+
     private Double orderAmount;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy' 'HH:mm:ss")
     private LocalDateTime orderDate;
 
+    /// METHOD THAT WILL ADD AN ITEM TO THE ORDER
+
+//    public void addItem (OrderItem item){
+//        this.items.add(item);
+//        item.setOrder(this);
+//    }
+
+    /// CONSTRUCTOR
     public Order(Cart cart, User eCommerceUsers, Product product, Double orderAmount, LocalDateTime orderDate) {
         this.cart = cart;
         this.eCommerceUsers = eCommerceUsers;
